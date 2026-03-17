@@ -2,6 +2,7 @@ import React from 'react'
 import { Booking, RoomUnit } from '@/types'
 import { useVisibleRange } from '@/hooks/useVisibleRange'
 import { RoomRow } from './RoomRow'
+import {useAppContext} from "@/context/AppContext";
 
 const COLUMN_WIDTH_PX = 48
 const TOTAL_DAYS = 30
@@ -22,6 +23,7 @@ function getDayLabels(startDate: string, totalDays: number): string[] {
 
 export function BookingGrid({ roomUnits, bookings, onBookingClick }: BookingGridProps) {
   const { visibleRange, handleScroll } = useVisibleRange()
+  const { config } = useAppContext()
 
   const startDate = new Date().toISOString().split('T')[0]
   const dayLabels = getDayLabels(startDate, TOTAL_DAYS)
@@ -30,7 +32,7 @@ export function BookingGrid({ roomUnits, bookings, onBookingClick }: BookingGrid
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
       {/* Header row */}
       <div style={{ display: 'flex', borderBottom: '2px solid #ddd', background: '#fafafa' }}>
-        <div style={{ width: 140, minWidth: 140, padding: '8px 12px', fontWeight: 600, fontSize: 13, borderRight: '1px solid #eee' }}>
+        <div style={{ width: 140, minWidth: 140, padding: '8px 12px', fontWeight: 600, fontSize: 13, borderRight: '1px solid #eee', background: config.bookingHeaderBackground }}>
           Room
         </div>
         <div
@@ -38,6 +40,7 @@ export function BookingGrid({ roomUnits, bookings, onBookingClick }: BookingGrid
             flex: 1,
             overflow: 'hidden',
             display: 'flex',
+            background: config.bookingHeaderBackground
           }}
         >
           {Array.from({ length: visibleRange.endIndex - visibleRange.startIndex + 1 }, (_, i) => {

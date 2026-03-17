@@ -46,4 +46,5 @@ export interface AppConfig {
   dateRangeEnd: string
   columnWidthPx: number
   visibleColumnsBuffer: number
+  bookingHeaderBackground: string
 }

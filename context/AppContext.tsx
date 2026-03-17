@@ -21,6 +21,7 @@ const defaultConfig: AppConfig = {
   })(),
   columnWidthPx: 48,
   visibleColumnsBuffer: 2,
+  bookingHeaderBackground: "#e8f4fc"
 }
 
 const AppContext = createContext<AppContextValue | null>(null)
